@@ -8,10 +8,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <body>
-      <ThemeProvider>
-        {children}
-      </ThemeProvider>
-    </body>
+    <html lang="en">
+      <body className="min-h-screen bg-background">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
   )
 }
