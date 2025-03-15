@@ -1,7 +1,7 @@
 // API service for making requests to the backend
 
 // Use a function to get the API URL to avoid issues during SSR
-const getApiUrl = () => process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const getApiUrl = () =>  'https://trendgenie-with-ai.onrender.com';
 
 /**
  * Fetch data from the API
