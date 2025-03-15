@@ -8,7 +8,7 @@ const { generateVideoContent } = require('./services/gemini');
 
 // Initialize Express app
 const app = express();
-const PORT = "https://trendgenie-with-ai.onrender.com" || 5000;
+const PORT =  5000;
 
 // Middleware
 app.use(cors());
