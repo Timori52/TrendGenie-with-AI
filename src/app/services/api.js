@@ -35,7 +35,7 @@ export const fetchFromAPI = async (endpoint, options = {}) => {
 export const generateVideoContent = async (topic, niche ) => {
   try {
     const API_URL = getApiUrl();
-    const response = await fetch(`${API_URL}/api/generate-video-content`, {
+    const response = await fetch(`https://trendgenie-with-ai.onrender.com/api/generate-video-content`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
