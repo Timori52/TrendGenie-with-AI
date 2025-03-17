@@ -150,3 +150,33 @@
     );
   }
 }
+
+/* Background video responsive adjustments */
+@media (max-width: 768px) {
+  /* Adjust the rounded corners for mobile */
+  .rounded-bl-\[40px\].rounded-br-\[40px\] {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  
+  /* Ensure video covers the screen properly on mobile */
+  video.absolute {
+    object-position: center;
+  }
+  
+  /* Make cards more readable on mobile with video background */
+  .bg-white\/90 {
+    --tw-bg-opacity: 0.95;
+  }
+  
+  .dark .dark\:bg-gray-900\/90 {
+    --tw-bg-opacity: 0.95;
+  }
+}
+
+/* For very small devices, adjust video positioning */
+@media (max-width: 480px) {
+  video.absolute {
+    transform: scale(1.2);
+  }
+}

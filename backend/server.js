@@ -24,19 +24,19 @@ app.get('/', (req, res) => {
 
 // Video content generation endpoint
 app.post('/api/generate-video-content', async (req, res) => {
-  const { topic, niche } = req.body;
+  const { topic, niche, optionsCount = 3 } = req.body;
   
   if (!topic) {
     return res.status(400).json({ error: 'Topic is required' });
   }
   
   try {
-    const content = await generateVideoContent(topic, niche);
+    const contentOptions = await generateVideoContent(topic, niche, optionsCount);
     res.json({
       success: true,
       topic,
       niche,
-      content
+      contentOptions
     });
   } catch (error) {
     console.error('Error in generate-video-content endpoint:', error);

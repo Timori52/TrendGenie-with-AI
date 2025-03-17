@@ -1,7 +1,7 @@
 // API service for making requests to the backend
 
 // Use a function to get the API URL to avoid issues during SSR
-const getApiUrl = () =>  'https://trendgenie-with-ai.onrender.com';
+const getApiUrl = () =>  'http://localhost:5000';
 
 /**
  * Fetch data from the API
@@ -35,12 +35,16 @@ export const fetchFromAPI = async (endpoint, options = {}) => {
 export const generateVideoContent = async (topic, niche ) => {
   try {
     const API_URL = getApiUrl();
-    const response = await fetch(`https://trendgenie-with-ai.onrender.com/api/generate-video-content`, {
+    const response = await fetch(`http://localhost:5000/api/generate-video-content`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ topic, niche }),
+      body: JSON.stringify({ 
+        topic, 
+        niche,
+        optionsCount: 3 // Request 3 content options
+      }),
     });
 
     const data = await response.json();
@@ -49,12 +53,31 @@ export const generateVideoContent = async (topic, niche ) => {
       throw new Error(data.error || `API error: ${response.status}`);
     }
 
-    // Validate the response structure
-    if (!data.content) {
+    // Check if we received multiple content options
+    if (data.contentOptions && Array.isArray(data.contentOptions)) {
+      return data;
+    } 
+    // If backend hasn't been updated yet, convert single content to array
+    else if (data.content) {
+      // Create variations of the content to simulate multiple options
+      return {
+        contentOptions: [
+          data.content,
+          {
+            title: `Alternative: ${data.content.title}`,
+            description: data.content.description,
+            hashtags: data.content.hashtags
+          },
+          {
+            title: `Another Option: ${data.content.title}`,
+            description: data.content.description,
+            hashtags: data.content.hashtags
+          }
+        ]
+      };
+    } else {
       throw new Error('Invalid response format from the server');
     }
-
-    return data;
   } catch (error) {
     console.error('API request failed:', error);
     throw error;
