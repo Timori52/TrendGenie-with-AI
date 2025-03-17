@@ -1,7 +1,7 @@
 // API service for making requests to the backend
 
 // Use a function to get the API URL to avoid issues during SSR
-const getApiUrl = () =>  'http://localhost:5000';
+const getApiUrl = () =>  'https://trendgenie-with-ai.onrender.com';
 
 /**
  * Fetch data from the API
@@ -35,7 +35,7 @@ export const fetchFromAPI = async (endpoint, options = {}) => {
 export const generateVideoContent = async (topic, niche ) => {
   try {
     const API_URL = getApiUrl();
-    const response = await fetch(`http://localhost:5000/api/generate-video-content`, {
+    const response = await fetch(`${API_URL}/api/generate-video-content`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
