@@ -2,7 +2,7 @@ import "./globals.css"
 import { ThemeProvider } from "./components/theme-provider"
 
 export const metadata = {
-  title: "Video Content Generator",
+  title: "Ai Content Creator For Youtube",
   description: "Generate engaging video content with AI",
 }
 
